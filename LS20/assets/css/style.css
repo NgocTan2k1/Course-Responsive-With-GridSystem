@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.item {
+    margin-top: 16px;
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
+    min-height: 80px;
+    line-height: 80px;
+    background-color: orange;
+}
+
+.something {
+    font-size: 16px;
+    background-color: violet;
+    color: #333;
+    line-height: 40px;
+}
+
+.main {
+    display: flex;    
+    padding: 0 32px;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #666;
+}
+
+.content {
+    flex: 1;
+    background-color: violet
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .hide-on-tablet{
+        display: none;
+    }
+}
+
+@media (max-width: 739px) {
+    .hide-on-moblie{
+        display: none;
+    }
+}
+

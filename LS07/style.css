@@ -1,0 +1,43 @@
+* {
+    background-color: yellowgreen;
+    margin: auto;
+}
+
+h2{
+    display: inline-flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.Moblie,
+.Tablet,
+.PC {
+    margin: auto;
+    font-size: 100px;
+    color: #fff;
+    display: none;
+}
+
+/* Moblie: width < 740px */
+@media only screen and (max-width: 46.1875em) {
+    .Moblie {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Tablet: 740px =< width < 1024px */
+@media only screen and (min-width: 45.25em) and (max-width: 63.9375em) {
+    .Tablet {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* PC: width > 1024px */
+@media only screen and (min-width: 64em) {
+    .PC {
+        display: flex;
+        justify-content: center;
+    }
+}

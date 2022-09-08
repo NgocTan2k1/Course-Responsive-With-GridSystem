@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>BEM 2</title>
+</head>
+<body>
+    <div id="toast">
+        <!-- Success -->
+        <!-- <div class="toast toast--success">
+            <div class="toast__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <h3 class="toast__title">Success</h3>
+
+                <p class="toast__msg">Đã bấm thành công rồi</p>
+            </div>
+
+            <div class="toast__close">
+            <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+        </div> -->
+
+        <!-- Info -->
+        <!-- <div class="toast toast--info">
+            <div class="toast__icon">
+            <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <h3 class="toast__title">Info</h3>
+
+                <p class="toast__msg">Cho xin info đi</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+        </div> -->
+
+        <!-- Warning-->
+        <!-- <div class="toast toast--warning">
+            <div class="toast__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <h3 class="toast__title">Warning</h3>
+
+                <p class="toast__msg">Đừng bấm nữa, nguy hiểm</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+        </div>
+
+        <-- Erorr-->
+        <!-- <div class="toast toast--erorr">
+            <div class="toast__icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="toast__body">
+                <h3 class="toast__title">Erorr</h3>
+
+                <p class="toast__msg">a di đà phật, lỗi rồi ạ!!!</p>
+            </div>
+
+            <div class="toast__close">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+        </div>-->
+    </div>
+    <div class="">
+        <div onclick="showSuccessToast();" class="btn btn--success">Show success toast</div>
+        <div onclick="showErrorToast();" class="btn btn--danger">Show success toast</div>
+    </div>
+    
+</body>
+
+<script>
+
+    //Show toast function
+    function toast({
+        title = '', 
+        message = '', 
+        type = 'info', 
+        duration = 3000
+    }) {
+        const main = document.getElementById('toast');
+
+        
+
+        const icons = {
+            success: 'fa-solid fa-circle-check',
+            info: 'fa-solid fa-info-check',
+            warning: 'fa-solid fa-diamond-exclamation',
+            error: 'fa-solid fa-exclamation'
+        }
+
+        const icon = icons[type];
+        const delay = (duration / 1000).toFixed(2); 
+
+        if(main) {
+            const toast = document.createElement('div');
+
+            // Auto remove
+            const autoRemoveId = setTimeout(function() {
+                main.removeChild(toast)
+            }, duration + 1000);
+
+            // remove when click
+            toast.onclick = function(event) {
+                if(event.target.closest('.toast__close')) {
+                    main.removeChild(toast);
+                    clearTimeout(autoRemoveId);
+                }
+            }
+            toast.classList.add('toast',`toast--${type}`);
+
+            toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1.5s ${delay}s`;
+
+            toast.innerHTML = `
+                <div class="toast__icon">
+                    <i class="${icon}"></i>
+                </div>
+
+                <div class="toast__body">
+                    <h3 class="toast__title">${title}</h3>
+
+                    <p class="toast__msg">${message}</p>
+                </div>
+
+                <div class="toast__close">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+            `;
+            main.appendChild(toast) 
+
+            
+        }
+    }
+
+    
+
+    function showSuccessToast() {
+        toast({
+            title: 'OK!!',
+            message: 'Đã bấm thành công rồi',
+            type: 'success',
+            duration: 1000
+        });
+    }
+
+    function showErrorToast() {
+        toast({
+            title: 'Thất bại',
+            message: 'Lỗi rồi, bấm bấm cái nồi',
+            type: 'error',
+            duration: 3000
+        });
+    }   
+
+</script>
+
+</html>
